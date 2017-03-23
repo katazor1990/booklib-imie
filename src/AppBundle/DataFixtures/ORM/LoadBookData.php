@@ -40,7 +40,7 @@ class LoadBookData extends AbstractFixture implements ContainerAwareInterface, O
         $manager->persist($harry_potter_chambre_des_secret);
         $this->addReference("book-JKR01587", $harry_potter_chambre_des_secret);
 
-        $harry_potter_chambre_des_secret_2 = new Book();
+/*        $harry_potter_chambre_des_secret_2 = new Book();
         $harry_potter_chambre_des_secret_2->setTitle("Harry Potter et la chambre des secrets");
         $harry_potter_chambre_des_secret_2->setReference("JKR01645");
         $harry_potter_chambre_des_secret_2->setSlug($slugger->slugify($harry_potter_chambre_des_secret_2->getReference() . '-' . $harry_potter_chambre_des_secret_2->getTitle()));
@@ -50,7 +50,19 @@ class LoadBookData extends AbstractFixture implements ContainerAwareInterface, O
         $harry_potter_chambre_des_secret_2->addCategory($this->getReference("cat-roman"));
         $harry_potter_chambre_des_secret_2->addCategory($this->getReference("cat-sf"));
         $manager->persist($harry_potter_chambre_des_secret_2);
-        $this->addReference("book-JKR01645", $harry_potter_chambre_des_secret_2);
+        $this->addReference("book-JKR01645", $harry_potter_chambre_des_secret_2);*/
+
+        $harry_potter_et_les_reliques_de_la_mort = new Book();
+        $harry_potter_et_les_reliques_de_la_mort->setTitle("Harry Potter et les reliques de la mort");
+        $harry_potter_et_les_reliques_de_la_mort->setReference("JKR01846");
+        $harry_potter_et_les_reliques_de_la_mort->setSlug($slugger->slugify($harry_potter_et_les_reliques_de_la_mort->getReference() . '-' . $harry_potter_et_les_reliques_de_la_mort->getTitle()));
+        $harry_potter_et_les_reliques_de_la_mort->setImage("harry_potter_et_les_reliques_de_la_mort.jpg");
+        $harry_potter_et_les_reliques_de_la_mort->setSynopsis("Cette année, Harry a 17 ans et ne retourne pas à l'école de Poudlard après la mort de Dumbledore. Avec Ron et Hermione il se consacre à la dernière mission confiée par Dumbledore. Le Seigneur des Ténèbres règne en maître et traque les fidèles amis qui sont réduit à la clandestinité. D'épreuves en révélations, le courage, les choix et les sacrifices de Harry seront déterminants dans la lutte contre les forces du Mal.");
+        $harry_potter_et_les_reliques_de_la_mort->setAuthor($this->getReference("author-rowling"));
+        $harry_potter_et_les_reliques_de_la_mort->addCategory($this->getReference("cat-roman"));
+        $harry_potter_et_les_reliques_de_la_mort->addCategory($this->getReference("cat-sf"));
+        $manager->persist($harry_potter_et_les_reliques_de_la_mort);
+        $this->addReference("book-JKR01846", $harry_potter_et_les_reliques_de_la_mort);
 
         $asterix_cleopatre = new Book();
         $asterix_cleopatre->setTitle("Astérix et Cléopâtre");

@@ -29,8 +29,10 @@ class DefaultController extends Controller {
      * @Route("/book/{slug}", name="show_book")
      */
     public function showBookAction(\AppBundle\Entity\Book $book) {
+        $randBook =  $this->getDoctrine()->getRepository("AppBundle:Book")->suggestBook($book->getId());
         return $this->render('book/show.html.twig', [
-                    "book" => $book
+                    "book" => $book,
+                    'randBook' => $randBook,
         ]);
     }
 

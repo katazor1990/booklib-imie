@@ -23,7 +23,14 @@
                 <p>{{ book.synopsis }}</p>
             </div>
         </div>
-
     </section>
-
+    <section class="container">
+        <div class="row">
+            {% for book in randBook %}
+                <div class="col-md-12">
+                {% include 'book/_book_thumbnail.html.twig' with {'book': book} %}
+            </div>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}

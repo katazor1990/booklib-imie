@@ -10,4 +10,17 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function topUsers($limit){
+        return $this->getEntityManager()
+            ->createQueryBuilder()
+            ->select('u AS user, COUNT(b.id) AS count_borrows')
+            ->from('AppBundle:user', 'u')
+            ->leftJoin('u.borrows', 'b')
+            ->groupBy('u.id')
+            ->orderBy('count_borrows', 'DESC' )
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

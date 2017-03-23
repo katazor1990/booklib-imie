@@ -41,7 +41,7 @@ class LoadBorrowData extends AbstractFixture implements OrderedFixtureInterface 
         $borrow4->setDateStart(new \DateTime("2017-01-05"));
         $borrow4->setBoxTo($this->getReference("box-rennes"));
         $borrow4->setUser($this->getReference("user-edurand"));
-        $borrow4->setBook($this->getReference("book-JKR01645"));
+        $borrow4->setBook($this->getReference("book-RG02454"));
         $manager->persist($borrow4);
 
         $manager->flush();

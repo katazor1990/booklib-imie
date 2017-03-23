@@ -77,7 +77,6 @@ class BookController extends Controller {
      */
     public function showAction(Book $book) {
         $deleteForm = $this->createDeleteForm($book);
-
         return $this->render('admin/book/show.html.twig', array(
                     'book' => $book,
                     'delete_form' => $deleteForm->createView(),

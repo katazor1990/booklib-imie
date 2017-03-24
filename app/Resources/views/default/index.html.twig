@@ -23,9 +23,9 @@
                             <div class="form-group">
                                 <label class="sr-only" for="selectCategory">Email</label>
                                 <select class="form-control" id="selectCategory">
-                                    <option disabled selected>Toutes les catégories</option>
+                                    <option selected>Toutes les catégories</option>                                       
                                     {% for category in categories %}
-                                        <option>{{ category.name }}</option>
+                                        <option value="{{ category.name }}" name="{{ category.name }}">{{ category.name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>

@@ -16,6 +16,7 @@ class DefaultController extends Controller {
         $categories = $this->getDoctrine()->getRepository("AppBundle:Category")->findAll();
         $lastBooks = $this->getDoctrine()->getRepository("AppBundle:Book")->findLast(3);
         $topUsers = $this->getDoctrine()->getRepository("AppBundle:User")->topUsers(6);
+        
 
         return $this->render('default/index.html.twig', [
                     "categories" => $categories,
@@ -45,7 +46,7 @@ class DefaultController extends Controller {
     public function showCategoryAction(\AppBundle\Entity\Category $category) {
         return $this->render('category/show.html.twig', [
                     "category" => $category
-        ]);
+        ]); 
     }
 
 }

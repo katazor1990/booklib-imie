@@ -22,6 +22,19 @@ class BookRepository extends \Doctrine\ORM\EntityRepository {
                         ->getResult()
         ;
     }
+    
+    public function findBook($expression) {
+        return $this->getEntityManager()
+                        ->createQueryBuilder()
+                        ->select('b')
+                        ->from('AppBundle:Book', 'b')
+                        ->where('b.title LIKE :expression')
+                        ->orderBy('b.title', 'ASC')  
+                        ->setParameter(expression, '%' . $expression . '%')
+                        ->getQuery()
+                        ->getResult()
+        ;
+    }
 
     public function suggestBook($book) {
         $qb = $this->getEntityManager()->createQueryBuilder();

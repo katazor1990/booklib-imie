@@ -22,38 +22,42 @@ class BookRepository extends \Doctrine\ORM\EntityRepository {
                         ->getResult()
         ;
     }
-    
-    public function findBook($expression) {
-        return $this->getEntityManager()
-                        ->createQueryBuilder()
-                        ->select('b')
-                        ->from('AppBundle:Book', 'b')
-                        ->where('b.title LIKE :expression')
-                        ->orderBy('b.title', 'ASC')  
-                        ->setParameter(expression, '%' . $expression . '%')
-                        ->getQuery()
-                        ->getResult()
-        ;
+
+    public function findBook($expression, $category) {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $query = $qb->select('b')
+                ->from('AppBundle:Book', 'b')
+                ->where($qb->expr()->like('b.title', ':expression'))
+                ->orderBy('b.title', 'ASC')
+                ->setParameter('expression', '%' . $expression . '%');
+
+        if ($category) {
+            $query->innerJoin('b.categories', 'c')
+                    ->andWhere($qb->expr()->eq('c.id', ':category'))
+                    ->setParameter('category', $category);
+        }
+
+        return $query->getQuery()->getResult();
     }
 
     public function suggestBook($book) {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
-/*
-            $in = $this->getEntityManager()
-                        ->createQueryBuilder()
-                        ->select('b', 'a')
-                        ->from('AppBundle:Book', 'b')
-                        ->innerJoin('b.author', 'a')
-                        ->orderBy('b.createdAt', 'DESC')
-                        ->getQuery()
-                        ->getResult();
-*/
-            return $qb->select('b')
+        /*
+          $in = $this->getEntityManager()
+          ->createQueryBuilder()
+          ->select('b', 'a')
+          ->from('AppBundle:Book', 'b')
+          ->innerJoin('b.author', 'a')
+          ->orderBy('b.createdAt', 'DESC')
+          ->getQuery()
+          ->getResult();
+         */
+        return $qb->select('b')
                         ->from('AppBundle:Book', 'b')
                         ->where($qb->expr()->notIn('b.id', $book))
                         ->getQuery()
                         ->getResult();
-
     }
+
 }

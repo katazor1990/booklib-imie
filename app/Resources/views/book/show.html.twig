@@ -33,9 +33,9 @@
         <div class="row">
             <h1> Suggestion du moment: </h1>
             {% for book in randBook %}
-                <div class="col-md-12">
+                <div class="col-md-3">
                 {% include 'book/_book_thumbnail.html.twig' with {'book': book} %}
-            </div>
+                </div>
             {% endfor %}
         </div>
     </section>

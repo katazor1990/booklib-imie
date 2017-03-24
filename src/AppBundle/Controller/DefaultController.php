@@ -49,4 +49,18 @@ class DefaultController extends Controller {
         ]); 
     }
 
+    /**
+     * @Route("/search", name="search_book")
+     */
+    public function searchBookAction(Request $request) {        
+        
+        $category = $request->query->get("category");
+        $expression = $request->query->get("expression");
+        $books =  $this->getDoctrine()->getRepository("AppBundle:Book")->findBook($expression, $category);
+                
+        return $this->render('book/searchresult.html.twig', [
+                    "books" => $books,
+                    "expression" => $expression
+        ]); 
+    }
 }

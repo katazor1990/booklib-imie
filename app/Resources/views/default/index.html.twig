@@ -15,17 +15,17 @@
                         <h2 class="panel-title text-center">Rechercher un livre</h2>
                     </div>
                     <div class="panel-body">
-                        <form class="form-inline text-center">
+                        <form action="{{ path('search_book') }}" method="GET" class="form-inline text-center">
                             <div class="form-group">
                                 <label class="sr-only" for="inputTitle">Titre</label>
-                                <input type="text" class="form-control" id="inputTitle" placeholder="Titre">
+                                <input type="text" class="form-control" id="inputTitle" name="expression" placeholder="Titre">
                             </div>
                             <div class="form-group">
                                 <label class="sr-only" for="selectCategory">Email</label>
-                                <select class="form-control" id="selectCategory">
-                                    <option selected>Toutes les catégories</option>                                       
+                                <select class="form-control" id="selectCategory" name="category">
+                                    <option value="" selected>Toutes les catégories</option>                                       
                                     {% for category in categories %}
-                                        <option value="{{ category.name }}" name="{{ category.name }}">{{ category.name }}</option>
+                                        <option value="{{ category.id }}">{{ category.name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>

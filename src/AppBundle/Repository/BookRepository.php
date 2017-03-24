@@ -39,16 +39,6 @@ class BookRepository extends \Doctrine\ORM\EntityRepository {
     public function suggestBook($book) {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
-/*
-            $in = $this->getEntityManager()
-                        ->createQueryBuilder()
-                        ->select('b', 'a')
-                        ->from('AppBundle:Book', 'b')
-                        ->innerJoin('b.author', 'a')
-                        ->orderBy('b.createdAt', 'DESC')
-                        ->getQuery()
-                        ->getResult();
-*/
             return $qb->select('b')
                         ->from('AppBundle:Book', 'b')
                         ->where($qb->expr()->notIn('b.id', $book))

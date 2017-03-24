@@ -30,6 +30,9 @@ class DefaultController extends Controller {
      */
     public function showBookAction(\AppBundle\Entity\Book $book) {
         $randBook =  $this->getDoctrine()->getRepository("AppBundle:Book")->suggestBook($book->getId());
+        shuffle($randBook);
+        $randBook = array_slice($randBook, 0, 2);
+
         return $this->render('book/show.html.twig', [
                     "book" => $book,
                     'randBook' => $randBook,
